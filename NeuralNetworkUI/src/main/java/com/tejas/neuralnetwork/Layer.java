@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Layer {
@@ -68,7 +67,6 @@ public class Layer {
         this.biases = biases;
     }
 
-
     public Matrix predict(Matrix X) throws Matrix.DimensionMismatchException {
         if (X.col != 1 || X.row != nodesPerLayer[0]) {
             throw new IllegalArgumentException("Incorrect input matrix");
@@ -89,7 +87,6 @@ public class Layer {
         return AL;
     }
 
-
     public static Layer loadFrom(String path) {
         List<Matrix> weightsList = new ArrayList<>();
         List<Matrix> biasesList = new ArrayList<>();
@@ -99,14 +96,12 @@ public class Layer {
         biasesList.add(null);
 
         try (FileInputStream fis = new FileInputStream(path);
-             DataInputStream dis = new DataInputStream(fis)
-        ) {
+                DataInputStream dis = new DataInputStream(fis)) {
             byte[] bytes = dis.readAllBytes();
 
             // Create a ByteBuffer from the byte array
             ByteBuffer buffer = ByteBuffer.wrap(bytes);
             buffer.order(ByteOrder.LITTLE_ENDIAN);
-
 
             int numLayers = buffer.getInt();
             wab = new Layer(numLayers);

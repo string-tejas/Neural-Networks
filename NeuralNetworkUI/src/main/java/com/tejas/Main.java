@@ -1,7 +1,6 @@
 package com.tejas;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.tejas.neuralnetwork.Layer;
 import com.tejas.ui.MainForm;
 
 import javax.swing.*;
